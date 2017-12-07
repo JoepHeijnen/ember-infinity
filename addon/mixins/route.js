@@ -110,6 +110,16 @@ const RouteMixin = Mixin.create({
    */
   totalPagesParam: 'meta.total_pages',
 
+  /**
+  * Method used to add new objects
+  * @type {String}
+  * @default "pushObjects"
+  */
+
+  _newObjectsAddMethod: 'pushObjects',
+
+
+
   actions: {
     infinityLoad(infinityModel) {
       if (infinityModel === this._infinityModel()) {
@@ -180,12 +190,12 @@ const RouteMixin = Mixin.create({
   _ensureCustomStoreCompatibility(options) {
     if (typeof options.store !== 'string') {
       throw new Ember.Error("Ember Infinity: Must pass custom data store as a string");
-    } 
+    }
 
     const store = this.get(options.store);
     if (!store[this.get('_storeFindMethod')]) {
       throw new Ember.Error("Ember Infinity: Custom data store must specify query method");
-    } 
+    }
   },
 
   /**
@@ -217,18 +227,21 @@ const RouteMixin = Mixin.create({
     }
 
     const startingPage = options.startingPage === undefined ? 0 : options.startingPage-1;
-    const perPage      = options.perPage || this.get('_perPage');
-    const modelPath    = options.modelPath || this.get('_modelPath');
+    const perPage                = options.perPage || this.get('_perPage');
+    const modelPath              = options.modelPath || this.get('_modelPath');
+    const newObjectsAddMethod    = options.newObjectsAddMethod || this.get('_newObjectsAddMethod');
 
     delete options.startingPage;
     delete options.perPage;
     delete options.modelPath;
+    delete options.newObjectsAddMethod;
 
     this.setProperties({
       currentPage: startingPage,
       _firstPageLoaded: false,
       _perPage: perPage,
       _modelPath: modelPath,
+      _newObjectsAddMethod: newObjectsAddMethod,
       _extraParams: options
     });
 
@@ -356,7 +369,9 @@ const RouteMixin = Mixin.create({
 
   _doUpdate(newObjects) {
     let infinityModel = this._infinityModel();
-    return infinityModel.pushObjects(newObjects.get('content'));
+    let newObjectsAddMethod = this.get('_newObjectsAddMethod') || 'pushObjects';
+
+    return infinityModel[newObjectsAddMethod](newObjects.get('content'));
   },
 
   /**
