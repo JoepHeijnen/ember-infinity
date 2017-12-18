@@ -113,13 +113,8 @@ const InfinityLoaderComponent = Ember.Component.extend({
 
   infinityModelPushed: Ember.observer('infinityModel.length', function() {
     if (this.get('reverse')) {
-      if (!this.get('firstTimePushed')) {
-        this.set('firstTimePushed', true);
-        Ember.run.debounce(this, this._contentScrollDown, 150);
-      } else {
-        Ember.run.scheduleOnce('afterRender', this, this._loadMoreIfNeeded);
-        this.get("_scrollable").scrollTop(100);
-      }
+      Ember.run.scheduleOnce('afterRender', this, this._loadMoreIfNeeded);
+      this.get("_scrollable").scrollTop(100);
     } else {
       Ember.run.scheduleOnce('afterRender', this, this._loadMoreIfNeeded);
     }
