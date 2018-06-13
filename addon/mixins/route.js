@@ -371,7 +371,7 @@ const RouteMixin = Mixin.create({
     let infinityModel = this._infinityModel();
     let newObjectsAddMethod = this.get('_newObjectsAddMethod') || 'pushObjects';
 
-    return infinityModel[newObjectsAddMethod](newObjects.get('content'));
+    return infinityModel ? infinityModel[newObjectsAddMethod](newObjects.get('content')) : Ember.A([]);
   },
 
   /**
