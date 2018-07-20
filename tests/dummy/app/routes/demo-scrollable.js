@@ -1,46 +1,30 @@
-import Ember from 'ember';
-import InfinityRoute from 'ember-infinity/mixins/route';
-import Pretender from 'pretender';
-import faker from 'faker';
-import json from '../helpers/json';
+import Route from '@ember/routing/route';
+import InfinityModel from 'ember-infinity/lib/infinity-model';
+import { get } from '@ember/object';
+import { inject as service } from '@ember/service';
 
-
-function generateFakeData(qty) {
-  var data = [];
-  for (var i = 0; i < qty; i++) {
-    data.push({id: i, name: faker.company.companyName()});
-  }
-  return data;
-}
-
-
-export default Ember.Route.extend(InfinityRoute, {
-  init: function () {
-    if (this._super.init) {
-      this._super.init.apply(this, arguments);
-    }
-    var fakeData = generateFakeData(104);
-    this.set('pretender', new Pretender());
-    this.get('pretender').get('/posts', request => {
-      var fd = fakeData;
-      var page = parseInt(request.queryParams.page, 10);
-      var per =  parseInt(request.queryParams.per_page, 10);
-      var payload = {
-        posts: fd.slice((page - 1) * per, Math.min((page) * per, fd.length)),
-        meta: {
-          total_pages: Math.ceil(fd.length/per)
-        }
-      };
-      return json(200, payload);
-
-    }, 500 /*ms*/);
+const ExtendedInfinityModel =  InfinityModel.extend({
+  buildParams() {
+    let params = this._super(...arguments);
+    params['categoryId'] = get(this, 'global').categoryId;
+    return params;
   },
+  afterInfinityModel(newObjects/*, infinityModel*/) {
+    // smoke test.  not really doing anything.  tested at unit level
+    return newObjects;
+  }
+});
 
-  tearDownPretender: Ember.observer('deactivate', function () {
-    this.set('pretender', undefined);
-  }),
+export default Route.extend({
+  global: service(),
+  infinity: service(),
 
   model() {
-    return this.infinityModel('post');
+    let global = get(this, 'global');
+    return get(this, 'infinity').model(
+      'post',
+      {},
+      ExtendedInfinityModel.extend({ global })
+    )
   }
 });

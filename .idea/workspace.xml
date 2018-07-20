@@ -1,0 +1,500 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="fb3a3161-1187-427e-93f5-390b2ff98dc6" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.eslintignore" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.eslintrc.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/addon/lib/infinity-model.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/addon/lib/infinity-promise-array.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/addon/services/infinity.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/mirage-factories/post.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/services/infinity.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/.eslintrc.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/acceptance/infinity-load-previous-test.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/acceptance/infinity-route-test.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/acceptance/infinity-route-with-non-blocking-model-test.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/dummy/app/components/list-items.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/dummy/app/components/top-component.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/dummy/app/controllers/load-previous.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/dummy/app/controllers/nested.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/dummy/app/routes/load-previous.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/dummy/app/routes/nested-component.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/dummy/app/routes/nested.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/dummy/app/routes/non-blocking-model.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/dummy/app/services/global.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/dummy/app/templates/components/list-items.hbs" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/dummy/app/templates/components/top-component.hbs" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/dummy/app/templates/load-previous.hbs" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/dummy/app/templates/nested-component.hbs" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/dummy/app/templates/nested.hbs" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/dummy/app/templates/non-blocking-model.hbs" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/dummy/config/targets.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/dummy/mirage/config.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/dummy/mirage/factories/post.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/dummy/mirage/scenarios/default.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/dummy/mirage/serializers/application.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/unit/services/infinity-test.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yarn.lock" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.bowerrc" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/addon/mixins/route.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/blueprints/.jshintrc" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bower.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/testem.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/acceptance/infinity-route-offset-trigger-test.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/acceptance/infinity-route-with-embedded-route-test.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/dummy/app/posts/route.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/dummy/app/posts/show/controller.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/dummy/app/posts/show/route.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/dummy/app/posts/show/template.hbs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/dummy/app/posts/template.hbs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/helpers/module-for-acceptance.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/unit/components/infinity-loader-test.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/.gitkeep" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.editorconfig" afterPath="$PROJECT_DIR$/.editorconfig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.jshintrc" afterPath="$PROJECT_DIR$/.jshintrc" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.npmignore" afterPath="$PROJECT_DIR$/.npmignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.travis.yml" afterPath="$PROJECT_DIR$/.travis.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CHANGELOG.md" afterPath="$PROJECT_DIR$/CHANGELOG.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/LICENSE.md" afterPath="$PROJECT_DIR$/LICENSE.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/addon/components/infinity-loader.js" afterPath="$PROJECT_DIR$/addon/components/infinity-loader.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/addon/utils.js" afterPath="$PROJECT_DIR$/addon/utils.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/components/infinity-loader.hbs" afterPath="$PROJECT_DIR$/app/templates/components/infinity-loader.hbs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/blueprints/infinity-template/files/app/templates/components/infinity-loader.hbs" afterPath="$PROJECT_DIR$/blueprints/infinity-template/files/app/templates/components/infinity-loader.hbs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/ember-try.js" afterPath="$PROJECT_DIR$/config/ember-try.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/environment.js" afterPath="$PROJECT_DIR$/config/environment.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ember-cli-build.js" afterPath="$PROJECT_DIR$/ember-cli-build.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.js" afterPath="$PROJECT_DIR$/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testem.js" afterPath="$PROJECT_DIR$/testem.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/acceptance/infinity-custom-store-test.js" afterPath="$PROJECT_DIR$/tests/acceptance/infinity-custom-store-test.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/acceptance/infinity-route-with-meta-test.js" afterPath="$PROJECT_DIR$/tests/acceptance/infinity-route-with-meta-test.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/acceptance/infinity-route-without-meta-test.js" afterPath="$PROJECT_DIR$/tests/acceptance/infinity-route-without-meta-test.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/dummy/app/app.js" afterPath="$PROJECT_DIR$/tests/dummy/app/app.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/dummy/app/controllers/test-scrollable.js" afterPath="$PROJECT_DIR$/tests/dummy/app/controllers/test-scrollable.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/dummy/app/index.html" afterPath="$PROJECT_DIR$/tests/dummy/app/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/dummy/app/models/custom-model.js" afterPath="$PROJECT_DIR$/tests/dummy/app/models/custom-model.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/dummy/app/router.js" afterPath="$PROJECT_DIR$/tests/dummy/app/router.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/dummy/app/routes/category.js" afterPath="$PROJECT_DIR$/tests/dummy/app/routes/category.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/dummy/app/routes/custom-store.js" afterPath="$PROJECT_DIR$/tests/dummy/app/routes/custom-store.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/dummy/app/routes/demo-scrollable.js" afterPath="$PROJECT_DIR$/tests/dummy/app/routes/demo-scrollable.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/dummy/app/routes/demo.js" afterPath="$PROJECT_DIR$/tests/dummy/app/routes/demo.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/dummy/app/routes/home.js" afterPath="$PROJECT_DIR$/tests/dummy/app/routes/home.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/dummy/app/routes/test-scrollable.js" afterPath="$PROJECT_DIR$/tests/dummy/app/routes/test-scrollable.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/dummy/app/services/custom-store.js" afterPath="$PROJECT_DIR$/tests/dummy/app/services/custom-store.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/dummy/app/styles/app.css" afterPath="$PROJECT_DIR$/tests/dummy/app/styles/app.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/dummy/app/templates/demo-scrollable.hbs" afterPath="$PROJECT_DIR$/tests/dummy/app/templates/demo-scrollable.hbs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/dummy/app/templates/demo.hbs" afterPath="$PROJECT_DIR$/tests/dummy/app/templates/demo.hbs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/dummy/app/templates/test-scrollable.hbs" afterPath="$PROJECT_DIR$/tests/dummy/app/templates/test-scrollable.hbs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/dummy/config/environment.js" afterPath="$PROJECT_DIR$/tests/dummy/config/environment.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/helpers/assert-acceptance-details.js" afterPath="$PROJECT_DIR$/tests/helpers/assert-acceptance-details.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/helpers/destroy-app.js" afterPath="$PROJECT_DIR$/tests/helpers/destroy-app.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/helpers/fake-album-server.js" afterPath="$PROJECT_DIR$/tests/helpers/fake-album-server.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/helpers/start-app.js" afterPath="$PROJECT_DIR$/tests/helpers/start-app.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/index.html" afterPath="$PROJECT_DIR$/tests/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/integration/infinity-loader-test.js" afterPath="$PROJECT_DIR$/tests/integration/infinity-loader-test.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/test-helper.js" afterPath="$PROJECT_DIR$/tests/test-helper.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/unit/mixins/route-test.js" afterPath="$PROJECT_DIR$/tests/unit/mixins/route-test.js" />
+    </list>
+    <ignored path="$PROJECT_DIR$/.tmp/" />
+    <ignored path="$PROJECT_DIR$/temp/" />
+    <ignored path="$PROJECT_DIR$/tmp/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
+      <file leaf-file-name="infinity-loader.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/addon/components/infinity-loader.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-840">
+              <caret line="125" column="22" lean-forward="true" selection-start-line="125" selection-start-column="22" selection-end-line="125" selection-end-column="22" />
+              <folding>
+                <marker date="1532087582302" expanded="true" signature="7:416" ph="..." />
+                <marker date="1532087582302" expanded="true" signature="484:6392" ph="{&quot;loadingText&quot;: 'Loading Infinite Model...'...}" />
+                <marker date="1532087582302" expanded="true" signature="641:709" ph="/** @public ...*/" />
+                <marker date="1532087582302" expanded="true" signature="733:782" ph="/** @public ...*/" />
+                <marker date="1532087582302" expanded="true" signature="829:877" ph="/** @public ...*/" />
+                <marker date="1532087582302" expanded="true" signature="929:1001" ph="/** @public ...*/" />
+                <marker date="1532087582302" expanded="true" signature="1029:1102" ph="/** @public ...*/" />
+                <marker date="1532087582302" expanded="true" signature="1131:1261" ph="/** indicate to infinity-loader to load previous page ...*/" />
+                <marker date="1532087582302" expanded="true" signature="1287:1373" ph="/** set if have scrollable area ...*/" />
+                <marker date="1532087582302" expanded="true" signature="1396:1514" ph="/** offset from bottom of target and viewport ...*/" />
+                <marker date="1532087582302" expanded="true" signature="1537:1671" ph="/** https://emberjs.com/api/ember/3.0/classes/Component/properties/isVisible?anchor=isVisible ...*/" />
+                <marker date="1532087582302" expanded="true" signature="1714:1946" ph="{...}" />
+                <marker date="1532087582302" expanded="true" signature="1762:1853" ph="{...}" />
+                <marker date="1532087582302" expanded="true" signature="1859:1942" ph="{...}" />
+                <marker date="1532087582302" expanded="true" signature="1951:2035" ph="/** setup ember-in-viewport properties ...*/" />
+                <marker date="1532087582302" expanded="true" signature="2057:2502" ph="{...}" />
+                <marker date="1532087582302" expanded="true" signature="2165:2349" ph="{&quot;scrollableArea&quot;: scrollableArea...}" />
+                <marker date="1532087582302" expanded="true" signature="2217:2320" ph="{...}" />
+                <marker date="1532087582302" expanded="true" signature="2434:2498" ph="{...}" />
+                <marker date="1532087582302" expanded="true" signature="2528:2590" ph="{...}" />
+                <marker date="1532087582302" expanded="true" signature="2657:2735" ph="{...}" />
+                <marker date="1532087582302" expanded="true" signature="2741:2869" ph="/** https://github.com/DockYard/ember-in-viewport##didenterviewport-didexitviewport ...*/" />
+                <marker date="1532087582302" expanded="true" signature="2891:3201" ph="{...}" />
+                <marker date="1532087582302" expanded="true" signature="3037:3064" ph="{...}" />
+                <marker date="1532087582302" expanded="true" signature="3101:3152" ph="{...}" />
+                <marker date="1532087582302" expanded="true" signature="3206:3333" ph="/** https://github.com/DockYard/ember-in-viewport##didenterviewport-didexitviewport ...*/" />
+                <marker date="1532087582302" expanded="true" signature="3354:3385" ph="{...}" />
+                <marker date="1532087582302" expanded="true" signature="3390:3434" ph="/** @method loadedStatusDidChange ...*/" />
+                <marker date="1532087582302" expanded="true" signature="3539:3679" ph="{...}" />
+                <marker date="1532087582302" expanded="true" signature="3631:3675" ph="{...}" />
+                <marker date="1532087582302" expanded="true" signature="3685:3828" ph="/** only load previous page if route started on a page greater than 1 &amp;&amp; currentPage is &gt; 0 ...*/" />
+                <marker date="1532087582302" expanded="true" signature="3856:4621" ph="{...}" />
+                <marker date="1532087582302" expanded="true" signature="3862:4057" ph="/*...*/" />
+                <marker date="1532087582302" expanded="true" signature="4159:4414" ph="{...}" />
+                <marker date="1532087582302" expanded="true" signature="4221:4324" ph="{...}" />
+                <marker date="1532087582302" expanded="true" signature="4330:4408" ph="{...}" />
+                <marker date="1532087582302" expanded="true" signature="4516:4617" ph="{...}" />
+                <marker date="1532087582302" expanded="true" signature="4626:4674" ph="/** @method _debounceScrolledToBottom ...*/" />
+                <marker date="1532087582302" expanded="true" signature="4705:5660" ph="{...}" />
+                <marker date="1532087582302" expanded="true" signature="4711:4906" ph="/*...*/" />
+                <marker date="1532087582302" expanded="true" signature="4931:5572" ph="{...}" />
+                <marker date="1532087582302" expanded="true" signature="4939:5015" ph="//..." />
+                <marker date="1532087582302" expanded="true" signature="5139:5163" ph="{...}" />
+                <marker date="1532087582302" expanded="true" signature="5203:5331" ph="{...}" />
+                <marker date="1532087582302" expanded="true" signature="5337:5558" ph="{...}" />
+                <marker date="1532087582302" expanded="true" signature="5442:5461" ph="{...}" />
+                <marker date="1532087582302" expanded="true" signature="5488:5540" ph="{...}" />
+                <marker date="1532087582302" expanded="true" signature="5665:5765" ph="/** recursive function to fill page with records ...*/" />
+                <marker date="1532087582302" expanded="true" signature="5793:5923" ph="{...}" />
+                <marker date="1532087582302" expanded="true" signature="5852:5919" ph="{...}" />
+                <marker date="1532087582302" expanded="true" signature="5944:5986" ph="{...}" />
+                <marker date="1532087582302" expanded="true" signature="5991:6099" ph="/**calculate the height of the viewport ...*/" />
+                <marker date="1532087582302" expanded="true" signature="6120:6390" ph="{...}" />
+                <marker date="1532087582302" expanded="true" signature="6163:6386" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>unshift</find>
+      <find>rever</find>
+      <find>_newObjectsAddMethod</find>
+      <find>reverse</find>
+    </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/addon/components/infinity-loader.js" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER">
+    <package-json value="$PROJECT_DIR$/package.json" />
+  </component>
+  <component name="JsFlowSettings">
+    <service-enabled>true</service-enabled>
+    <exe-path />
+    <annotation-enable>false</annotation-enable>
+    <other-services-enabled>true</other-services-enabled>
+    <auto-save>true</auto-save>
+  </component>
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-9" />
+    <option name="y" value="-9" />
+    <option name="width" value="1938" />
+    <option name="height" value="1048" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>AngularJS</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scratches" />
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="ember-infinity" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ember-infinity" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ember-infinity" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ember-infinity" type="462c0819:PsiDirectoryNode" />
+              <item name="addon" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ember-infinity" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ember-infinity" type="462c0819:PsiDirectoryNode" />
+              <item name="addon" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="settings.editor.selected.configurable" value="Settings.JavaScript" />
+    <property name="JavaScriptPreferStrict" value="false" />
+    <property name="JavaScriptWeakerCompletionTypeGuess" value="true" />
+    <property name="node.js.path.for.package.stylelint" value="project" />
+    <property name="nodejs_interpreter_path" value="C:/Program Files/nodejs/node" />
+    <property name="node.js.selected.package.stylelint" value="" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="HbShouldOpenHtmlAsHb" value="" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="fb3a3161-1187-427e-93f5-390b2ff98dc6" name="Default" comment="" />
+      <created>1531491522209</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1531491522209</updated>
+      <workItem from="1531491523490" duration="2660000" />
+      <workItem from="1532087490312" duration="172000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="2832000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
+    <layout>
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/addon/components/infinity-loader.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2394">
+          <caret line="114" column="25" lean-forward="false" selection-start-line="114" selection-start-column="18" selection-end-line="114" selection-end-column="25" />
+          <folding>
+            <marker date="1532087582302" expanded="true" signature="7:416" ph="..." />
+            <marker date="1532087582302" expanded="true" signature="484:6392" ph="{&quot;loadingText&quot;: 'Loading Infinite Model...'...}" />
+            <marker date="1532087582302" expanded="true" signature="641:709" ph="/** @public ...*/" />
+            <marker date="1532087582302" expanded="true" signature="733:782" ph="/** @public ...*/" />
+            <marker date="1532087582302" expanded="true" signature="829:877" ph="/** @public ...*/" />
+            <marker date="1532087582302" expanded="true" signature="929:1001" ph="/** @public ...*/" />
+            <marker date="1532087582302" expanded="true" signature="1029:1102" ph="/** @public ...*/" />
+            <marker date="1532087582302" expanded="true" signature="1131:1261" ph="/** indicate to infinity-loader to load previous page ...*/" />
+            <marker date="1532087582302" expanded="true" signature="1287:1373" ph="/** set if have scrollable area ...*/" />
+            <marker date="1532087582302" expanded="true" signature="1396:1514" ph="/** offset from bottom of target and viewport ...*/" />
+            <marker date="1532087582302" expanded="true" signature="1537:1671" ph="/** https://emberjs.com/api/ember/3.0/classes/Component/properties/isVisible?anchor=isVisible ...*/" />
+            <marker date="1532087582302" expanded="true" signature="1714:1946" ph="{...}" />
+            <marker date="1532087582302" expanded="true" signature="1762:1853" ph="{...}" />
+            <marker date="1532087582302" expanded="true" signature="1859:1942" ph="{...}" />
+            <marker date="1532087582302" expanded="true" signature="1951:2035" ph="/** setup ember-in-viewport properties ...*/" />
+            <marker date="1532087582302" expanded="true" signature="2057:2502" ph="{...}" />
+            <marker date="1532087582302" expanded="true" signature="2165:2349" ph="{&quot;scrollableArea&quot;: scrollableArea...}" />
+            <marker date="1532087582302" expanded="true" signature="2217:2320" ph="{...}" />
+            <marker date="1532087582302" expanded="true" signature="2434:2498" ph="{...}" />
+            <marker date="1532087582302" expanded="true" signature="2528:2590" ph="{...}" />
+            <marker date="1532087582302" expanded="true" signature="2657:2735" ph="{...}" />
+            <marker date="1532087582302" expanded="true" signature="2741:2869" ph="/** https://github.com/DockYard/ember-in-viewport##didenterviewport-didexitviewport ...*/" />
+            <marker date="1532087582302" expanded="true" signature="2891:3201" ph="{...}" />
+            <marker date="1532087582302" expanded="true" signature="3037:3064" ph="{...}" />
+            <marker date="1532087582302" expanded="true" signature="3101:3152" ph="{...}" />
+            <marker date="1532087582302" expanded="true" signature="3206:3333" ph="/** https://github.com/DockYard/ember-in-viewport##didenterviewport-didexitviewport ...*/" />
+            <marker date="1532087582302" expanded="true" signature="3354:3385" ph="{...}" />
+            <marker date="1532087582302" expanded="true" signature="3390:3434" ph="/** @method loadedStatusDidChange ...*/" />
+            <marker date="1532087582302" expanded="true" signature="3539:3679" ph="{...}" />
+            <marker date="1532087582302" expanded="true" signature="3631:3675" ph="{...}" />
+            <marker date="1532087582302" expanded="true" signature="3685:3828" ph="/** only load previous page if route started on a page greater than 1 &amp;&amp; currentPage is &gt; 0 ...*/" />
+            <marker date="1532087582302" expanded="true" signature="3856:4621" ph="{...}" />
+            <marker date="1532087582302" expanded="true" signature="3862:4057" ph="/*...*/" />
+            <marker date="1532087582302" expanded="true" signature="4159:4414" ph="{...}" />
+            <marker date="1532087582302" expanded="true" signature="4221:4324" ph="{...}" />
+            <marker date="1532087582302" expanded="true" signature="4330:4408" ph="{...}" />
+            <marker date="1532087582302" expanded="true" signature="4516:4617" ph="{...}" />
+            <marker date="1532087582302" expanded="true" signature="4626:4674" ph="/** @method _debounceScrolledToBottom ...*/" />
+            <marker date="1532087582302" expanded="true" signature="4705:5660" ph="{...}" />
+            <marker date="1532087582302" expanded="true" signature="4711:4906" ph="/*...*/" />
+            <marker date="1532087582302" expanded="true" signature="4931:5572" ph="{...}" />
+            <marker date="1532087582302" expanded="true" signature="4939:5015" ph="//..." />
+            <marker date="1532087582302" expanded="true" signature="5139:5163" ph="{...}" />
+            <marker date="1532087582302" expanded="true" signature="5203:5331" ph="{...}" />
+            <marker date="1532087582302" expanded="true" signature="5337:5558" ph="{...}" />
+            <marker date="1532087582302" expanded="true" signature="5442:5461" ph="{...}" />
+            <marker date="1532087582302" expanded="true" signature="5488:5540" ph="{...}" />
+            <marker date="1532087582302" expanded="true" signature="5665:5765" ph="/** recursive function to fill page with records ...*/" />
+            <marker date="1532087582302" expanded="true" signature="5793:5923" ph="{...}" />
+            <marker date="1532087582302" expanded="true" signature="5852:5919" ph="{...}" />
+            <marker date="1532087582302" expanded="true" signature="5944:5986" ph="{...}" />
+            <marker date="1532087582302" expanded="true" signature="5991:6099" ph="/**calculate the height of the viewport ...*/" />
+            <marker date="1532087582302" expanded="true" signature="6120:6390" ph="{...}" />
+            <marker date="1532087582302" expanded="true" signature="6163:6386" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/addon/mixins/route.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="8064">
+          <caret line="384" column="67" lean-forward="false" selection-start-line="384" selection-start-column="67" selection-end-line="384" selection-end-column="67" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/addon/utils.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/addon/mixins/route.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="8064">
+          <caret line="384" column="67" lean-forward="false" selection-start-line="384" selection-start-column="67" selection-end-line="384" selection-end-column="67" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/addon/components/infinity-loader.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-840">
+          <caret line="125" column="22" lean-forward="true" selection-start-line="125" selection-start-column="22" selection-end-line="125" selection-end-column="22" />
+          <folding>
+            <marker date="1532087582302" expanded="true" signature="7:416" ph="..." />
+            <marker date="1532087582302" expanded="true" signature="484:6392" ph="{&quot;loadingText&quot;: 'Loading Infinite Model...'...}" />
+            <marker date="1532087582302" expanded="true" signature="641:709" ph="/** @public ...*/" />
+            <marker date="1532087582302" expanded="true" signature="733:782" ph="/** @public ...*/" />
+            <marker date="1532087582302" expanded="true" signature="829:877" ph="/** @public ...*/" />
+            <marker date="1532087582302" expanded="true" signature="929:1001" ph="/** @public ...*/" />
+            <marker date="1532087582302" expanded="true" signature="1029:1102" ph="/** @public ...*/" />
+            <marker date="1532087582302" expanded="true" signature="1131:1261" ph="/** indicate to infinity-loader to load previous page ...*/" />
+            <marker date="1532087582302" expanded="true" signature="1287:1373" ph="/** set if have scrollable area ...*/" />
+            <marker date="1532087582302" expanded="true" signature="1396:1514" ph="/** offset from bottom of target and viewport ...*/" />
+            <marker date="1532087582302" expanded="true" signature="1537:1671" ph="/** https://emberjs.com/api/ember/3.0/classes/Component/properties/isVisible?anchor=isVisible ...*/" />
+            <marker date="1532087582302" expanded="true" signature="1714:1946" ph="{...}" />
+            <marker date="1532087582302" expanded="true" signature="1762:1853" ph="{...}" />
+            <marker date="1532087582302" expanded="true" signature="1859:1942" ph="{...}" />
+            <marker date="1532087582302" expanded="true" signature="1951:2035" ph="/** setup ember-in-viewport properties ...*/" />
+            <marker date="1532087582302" expanded="true" signature="2057:2502" ph="{...}" />
+            <marker date="1532087582302" expanded="true" signature="2165:2349" ph="{&quot;scrollableArea&quot;: scrollableArea...}" />
+            <marker date="1532087582302" expanded="true" signature="2217:2320" ph="{...}" />
+            <marker date="1532087582302" expanded="true" signature="2434:2498" ph="{...}" />
+            <marker date="1532087582302" expanded="true" signature="2528:2590" ph="{...}" />
+            <marker date="1532087582302" expanded="true" signature="2657:2735" ph="{...}" />
+            <marker date="1532087582302" expanded="true" signature="2741:2869" ph="/** https://github.com/DockYard/ember-in-viewport##didenterviewport-didexitviewport ...*/" />
+            <marker date="1532087582302" expanded="true" signature="2891:3201" ph="{...}" />
+            <marker date="1532087582302" expanded="true" signature="3037:3064" ph="{...}" />
+            <marker date="1532087582302" expanded="true" signature="3101:3152" ph="{...}" />
+            <marker date="1532087582302" expanded="true" signature="3206:3333" ph="/** https://github.com/DockYard/ember-in-viewport##didenterviewport-didexitviewport ...*/" />
+            <marker date="1532087582302" expanded="true" signature="3354:3385" ph="{...}" />
+            <marker date="1532087582302" expanded="true" signature="3390:3434" ph="/** @method loadedStatusDidChange ...*/" />
+            <marker date="1532087582302" expanded="true" signature="3539:3679" ph="{...}" />
+            <marker date="1532087582302" expanded="true" signature="3631:3675" ph="{...}" />
+            <marker date="1532087582302" expanded="true" signature="3685:3828" ph="/** only load previous page if route started on a page greater than 1 &amp;&amp; currentPage is &gt; 0 ...*/" />
+            <marker date="1532087582302" expanded="true" signature="3856:4621" ph="{...}" />
+            <marker date="1532087582302" expanded="true" signature="3862:4057" ph="/*...*/" />
+            <marker date="1532087582302" expanded="true" signature="4159:4414" ph="{...}" />
+            <marker date="1532087582302" expanded="true" signature="4221:4324" ph="{...}" />
+            <marker date="1532087582302" expanded="true" signature="4330:4408" ph="{...}" />
+            <marker date="1532087582302" expanded="true" signature="4516:4617" ph="{...}" />
+            <marker date="1532087582302" expanded="true" signature="4626:4674" ph="/** @method _debounceScrolledToBottom ...*/" />
+            <marker date="1532087582302" expanded="true" signature="4705:5660" ph="{...}" />
+            <marker date="1532087582302" expanded="true" signature="4711:4906" ph="/*...*/" />
+            <marker date="1532087582302" expanded="true" signature="4931:5572" ph="{...}" />
+            <marker date="1532087582302" expanded="true" signature="4939:5015" ph="//..." />
+            <marker date="1532087582302" expanded="true" signature="5139:5163" ph="{...}" />
+            <marker date="1532087582302" expanded="true" signature="5203:5331" ph="{...}" />
+            <marker date="1532087582302" expanded="true" signature="5337:5558" ph="{...}" />
+            <marker date="1532087582302" expanded="true" signature="5442:5461" ph="{...}" />
+            <marker date="1532087582302" expanded="true" signature="5488:5540" ph="{...}" />
+            <marker date="1532087582302" expanded="true" signature="5665:5765" ph="/** recursive function to fill page with records ...*/" />
+            <marker date="1532087582302" expanded="true" signature="5793:5923" ph="{...}" />
+            <marker date="1532087582302" expanded="true" signature="5852:5919" ph="{...}" />
+            <marker date="1532087582302" expanded="true" signature="5944:5986" ph="{...}" />
+            <marker date="1532087582302" expanded="true" signature="5991:6099" ph="/**calculate the height of the viewport ...*/" />
+            <marker date="1532087582302" expanded="true" signature="6120:6390" ph="{...}" />
+            <marker date="1532087582302" expanded="true" signature="6163:6386" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

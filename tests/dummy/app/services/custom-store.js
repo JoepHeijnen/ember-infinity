@@ -1,7 +1,11 @@
-import Ember from 'ember';
+import { resolve } from 'rsvp';
+import { A } from '@ember/array';
+import ArrayProxy from '@ember/array/proxy';
+import Service from '@ember/service';
+import { getOwner } from '@ember/application';
 
 function factoryForType(type, store) {
-  return Ember.getOwner(store)._lookupFactory('model:' + type);
+  return getOwner(store).resolveRegistration('model:' + type);
 }
 
 function persistData(type, obj, customStore) {
@@ -10,13 +14,13 @@ function persistData(type, obj, customStore) {
   const record = Factory.create(obj);
   const id = obj.id;
   if (persistentContainer[type]) {
-    return persistentContainer[type].set(id, record); 
+    return persistentContainer[type].set(id, record);
   }
   persistentContainer[type] = new Map();
   return persistentContainer[type].set(id, record);
 }
 
-export default Ember.Service.extend({
+export default Service.extend({
   /**
    * holds all models by type
    * @property persistentContainer
@@ -31,8 +35,8 @@ export default Ember.Service.extend({
   findAll(type) {
     const containerObjs = this.get('persistentContainer')[type];
     const content = Array.from(containerObjs.values());
-    const arrProxy = Ember.ArrayProxy.create({ content: Ember.A(content) });
-    return Ember.RSVP.resolve(arrProxy);
+    const arrProxy = ArrayProxy.create({ content: A(content) });
+    return resolve(arrProxy);
   },
   /**
    * @method push

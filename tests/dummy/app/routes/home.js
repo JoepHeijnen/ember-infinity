@@ -1,8 +1,11 @@
-import Ember from 'ember';
-import InfinityRoute from 'ember-infinity/mixins/route';
+import Route from '@ember/routing/route';
+import { get } from '@ember/object';
+import { inject as service } from '@ember/service';
 
-export default Ember.Route.extend(InfinityRoute, {
-  model: function() {
-    return this.infinityModel('post');
+export default Route.extend({
+  infinity: service(),
+
+  model() {
+    return get(this, 'infinity').model('post');
   }
 });

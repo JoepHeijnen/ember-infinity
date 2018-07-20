@@ -1,6 +1,8 @@
-import Ember from 'ember';
+import Controller from '@ember/controller';
 
-export default Ember.Controller.extend({
-  queryParams: ['triggerOffset'],
-  triggerOffset: 0
+export default Controller.extend({
+  queryParams: ['triggerOffset', 'page', 'perPage'],
+  triggerOffset: 0,
+  page: 1,
+  perPage: 25
 });

@@ -1,43 +1,45 @@
-import { test } from 'qunit';
-import moduleForAcceptance from '../../tests/helpers/module-for-acceptance';
+import { module, test } from 'qunit';
+import { visit, find } from '@ember/test-helpers';
+import { setupApplicationTest } from 'ember-qunit';
 import buildServer from '../helpers/fake-album-server';
 import assertDetails from '../helpers/assert-acceptance-details';
 
 let server;
 
-moduleForAcceptance('Acceptance: Infinity Route', {
-  beforeEach() {
+module('Acceptance: Infinity Route', function(hooks) {
+  setupApplicationTest(hooks);
+
+  hooks.beforeEach(function() {
     server = buildServer();
-  },
-  afterEach() {
+    document.getElementById('ember-testing-container').scrollTop = 0;
+  });
+
+  hooks.afterEach(function() {
     server.shutdown();
-  }
-});
+  });
 
-test('it works when meta is present in payload', function(assert) {
-  visit('/test');
+  test('it works when meta is present in payload', async function(assert) {
+    await visit('/test');
 
-  andThen(() => {
     assertDetails(assert, {
       title: 'Listing Posts',
       listLength: 6,
       reachedInfinity: true
     });
   });
-});
 
-test('it works with parameters', function(assert) {
-  visit('/category/a?per_page=2');
+  test('it works with parameters', async function(assert) {
+    await visit('/category/a?per_page=2');
 
-  andThen(() => {
     assertDetails(assert, {
       title: "Listing Posts using Parameters",
       listLength: 2,
       reachedInfinity: false
     });
 
-    var postList = find('ul');
+    let postList = find('ul');
 
-    assert.equal(postList.find('li:first-child').text(), "Squarepusher", "First item should be 'Squarepusher'");
+    assert.equal(postList.querySelector('li').textContent, "Squarepusher", "First item should be 'Squarepusher'");
+    assert.equal(postList.querySelectorAll('li').length, 2, "List length is 2");
   });
 });

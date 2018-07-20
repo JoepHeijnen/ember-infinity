@@ -1,124 +1,244 @@
-import Ember from 'ember';
+import { alias } from '@ember/object/computed';
+import InfinityPromiseArray from 'ember-infinity/lib/infinity-promise-array';
+import InViewportMixin from 'ember-in-viewport';
+import { run } from '@ember/runloop';
+import { get, set, computed, observer, defineProperty } from '@ember/object';
+import Component from '@ember/component';
+import { inject as service } from '@ember/service';
+import { resolve } from 'rsvp';
 
-const InfinityLoaderComponent = Ember.Component.extend({
-  classNames: ["infinity-loader"],
-  classNameBindings: ["infinityModel.reachedInfinity"],
-  guid: null,
-  eventDebounce: 10,
-  loadMoreAction: 'infinityLoad',
+const InfinityLoaderComponent = Component.extend(InViewportMixin, {
+  infinity: service(),
+
+  classNames: ['infinity-loader'],
+  classNameBindings: ['infinityModelContent.reachedInfinity', 'viewportEntered:in-viewport'],
+  /**
+   * @public
+   * @property eventDebounce
+   * @default 50
+   */
+  eventDebounce: 50,
+  /**
+   * @public
+   * @property loadingText
+   */
   loadingText: 'Loading Infinite Model...',
+  /**
+   * @public
+   * @property loadedText
+   */
   loadedText: 'Infinite Model Entirely Loaded.',
-  destroyOnInfinity: false,
+  /**
+   * @public
+   * @property hideOnInfinity
+   * @default false
+   */
+  hideOnInfinity: false,
+  /**
+   * @public
+   * @property developmentMode
+   * @default false
+   */
   developmentMode: false,
+  /**
+   * indicate to infinity-loader to load previous page
+   *
+   * @public
+   * @property loadPrevious
+   * @default false
+   */
+  loadPrevious: false,
+  /**
+   * set if have scrollable area
+   *
+   * @public
+   * @property scrollable
+   */
   scrollable: null,
+  /**
+   * offset from bottom of target and viewport
+   *
+   * @public
+   * @property triggerOffset
+   * @defaul 0
+   */
   triggerOffset: 0,
-  reverse: false,
+  /**
+   * https://emberjs.com/api/ember/3.0/classes/Component/properties/isVisible?anchor=isVisible
+   *
+   * @property isVisible
+   */
+  isVisible: true,
 
-  didInsertElement(){
-    Ember.run.schedule('routerTransitions', this, ()  =>  this.setupElement());
+  willInsertElement() {
+    if (get(this, '_isInfinityPromiseArray')) {
+      defineProperty(this, 'infinityModelContent', alias('infinityModel.promise'));
+    } else {
+      defineProperty(this, 'infinityModelContent', alias('infinityModel'));
+    }
   },
 
-  setupElement() {
+  /**
+   * setup ember-in-viewport properties
+   *
+   * @method didInsertElement
+   */
+  didInsertElement() {
     this._super(...arguments);
-    this._setupScrollable();
-    this.set('guid', Ember.guidFor(this));
-    this._bindEvent('scroll');
-    this._bindEvent('resize');
-    this._loadMoreIfNeeded();
+
+    let scrollableArea = get(this, 'scrollable');
+
+    this.setProperties({
+      viewportSpy: true,
+      viewportTolerance: {
+        top: 0,
+        right: 0,
+        bottom: get(this, 'triggerOffset'),
+        left: 0
+      },
+      scrollableArea,
+    });
+    let infinityModel = get(this, 'infinityModelContent');
+    if (infinityModel) {
+      set(infinityModel, '_scrollable', scrollableArea);
+    }
   },
 
   willDestroyElement() {
     this._super(...arguments);
-    this._unbindEvent('scroll');
-    this._unbindEvent('resize');
+    this._cancelTimers();
   },
 
-  _bindEvent(eventName) {
-    this.get('_scrollable').on(`${eventName}.${this.get('guid')}`, () => {
-      Ember.run.debounce(this, this._loadMoreIfNeeded, this.get('eventDebounce'));
-    });
-  },
+  _isInfinityPromiseArray: computed('infinityModel', function() {
+    return (get(this, 'infinityModel') instanceof InfinityPromiseArray);
+  }),
 
-  _unbindEvent(eventName) {
-    let scrollable = this.get('_scrollable');
-    if (scrollable) {
-      scrollable.off(`${eventName}.${this.get('guid')}`);
-    }
-  },
-
-  _selfOffset() {
-    if (this.get('_customScrollableIsDefined')) {
-      return this.$().offset().top - this.get("_scrollable").offset().top + this.get("_scrollable").scrollTop();
-    } else {
-      return this.$().offset().top;
-    }
-  },
-
-  _bottomOfScrollableOffset() {
-    return this.get('_scrollable').height() + this.get("_scrollable").scrollTop();
-  },
-
-  _triggerOffset() {
-    return this._selfOffset() - this.get('triggerOffset');
-  },
-
-  _shouldLoadMore() {
-    if (this.get('developmentMode') || typeof FastBoot !== 'undefined' || this.isDestroying || this.isDestroyed) {
+  /**
+   * https://github.com/DockYard/ember-in-viewport#didenterviewport-didexitviewport
+   *
+   * @method didEnterViewport
+   */
+  didEnterViewport() {
+    if (
+      get(this, 'developmentMode') ||
+      typeof FastBoot !== 'undefined' ||
+      this.isDestroying ||
+      this.isDestroyed
+    ) {
       return false;
     }
 
-    if (this.get('reverse')) {
-      return this.get("_scrollable").scrollTop() <= this.get('triggerOffset');
-    } else {
-      return this._bottomOfScrollableOffset() > this._triggerOffset();
+    if (get(this, 'loadPrevious')) {
+      return this._debounceScrolledToTop();
     }
+    return this._debounceScrolledToBottom();
   },
 
-  _loadMoreIfNeeded() {
-    if (this._shouldLoadMore()) {
-      this.sendAction('loadMoreAction', this.get('infinityModel'));
-    }
+  /**
+   * https://github.com/DockYard/ember-in-viewport#didenterviewport-didexitviewport
+   *
+   * @method didExitViewport
+   */
+  didExitViewport() {
+    this._cancelTimers();
   },
 
-  _contentScrollDown() {
-    let scrollable = this.get("_scrollable");
-    scrollable.scrollTop(scrollable[0].scrollHeight);
-  },
-
-  _setupScrollable() {
-    var scrollable = this.get('scrollable');
-    if (Ember.typeOf(scrollable) === 'string') {
-      var items = Ember.$(scrollable);
-      if (items.length === 1) {
-        this.set('_scrollable', items.eq(0));
-      } else if (items.length > 1) {
-        throw new Ember.Error("Ember Infinity: Multiple scrollable elements found for: " + scrollable);
-      } else {
-        throw new Ember.Error("Ember Infinity: No scrollable element found for: " + scrollable);
-      }
-      this.set('_customScrollableIsDefined', true);
-    } else if (scrollable === undefined || scrollable === null) {
-      this.set('_scrollable', Ember.$(window));
-      this.set('_customScrollableIsDefined', false);
-    } else {
-      throw new Ember.Error("Ember Infinity: Scrollable must either be a css selector string or left empty to default to window");
-    }
-  },
-
-  loadedStatusDidChange: Ember.observer('infinityModel.reachedInfinity', 'destroyOnInfinity', function () {
-    if (this.get('infinityModel.reachedInfinity') && this.get('destroyOnInfinity')) {
-      this.destroy();
+  /**
+   * @method loadedStatusDidChange
+   */
+  loadedStatusDidChange: observer('infinityModelContent.reachedInfinity', 'hideOnInfinity', function () {
+    if (get(this, 'infinityModelContent.reachedInfinity') && get(this, 'hideOnInfinity')) {
+      set(this, 'isVisible', false);
     }
   }),
 
-  infinityModelPushed: Ember.observer('infinityModel.length', function() {
-    if (this.get('reverse')) {
-      Ember.run.scheduleOnce('afterRender', this, this._loadMoreIfNeeded);
-      this.get("_scrollable").scrollTop(100);
-    } else {
-      Ember.run.scheduleOnce('afterRender', this, this._loadMoreIfNeeded);
+  /**
+   * only load previous page if route started on a page greater than 1 && currentPage is > 0
+   *
+   * @method _debounceScrolledToTop
+   */
+  _debounceScrolledToTop() {
+    /*
+     This debounce is needed when there is not enough delay between onScrolledToBottom calls.
+     Without this debounce, all rows will be rendered causing immense performance problems
+     */
+    const infinityModelContent = get(this, 'infinityModelContent');
+
+    function loadPreviousPage() {
+      if (typeof(get(this, 'infinityLoad')) === 'function') {
+        // closure action
+        return get(this, 'infinityLoad')(infinityModelContent, -1);
+      } else {
+        get(this, 'infinity').infinityLoad(infinityModelContent, -1)
+      }
     }
-  })
+
+    if (get(infinityModelContent, 'firstPage') > 1 && get(infinityModelContent, 'currentPage') > 0) {
+      this._debounceTimer = run.debounce(this, loadPreviousPage, get(this, 'eventDebounce'));
+    }
+  },
+
+  /**
+   * @method _debounceScrolledToBottom
+   */
+  _debounceScrolledToBottom() {
+    /*
+     This debounce is needed when there is not enough delay between onScrolledToBottom calls.
+     Without this debounce, all rows will be rendered causing immense performance problems
+     */
+    function loadMore() {
+      // resolve to create thennable
+      // type is <InfinityModel|Promise|null>
+      let infinityModelContent = resolve(get(this, 'infinityModelContent'));
+
+      infinityModelContent.then((content) => {
+        if (typeof(get(this, 'infinityLoad')) === 'function') {
+        // closure action (if you need to perform some other logic)
+        return get(this, 'infinityLoad')(content);
+      } else {
+        // service action
+        get(this, 'infinity').infinityLoad(content, 1)
+          .then(() => {
+          if (get(content, '_canLoadMore')) {
+          this._checkScrollableHeight();
+        }
+      });
+      }
+    });
+    }
+    this._debounceTimer = run.debounce(this, loadMore, get(this, 'eventDebounce'));
+  },
+
+  /**
+   * recursive function to fill page with records
+   *
+   * @method _checkScrollableHeight
+   */
+  _checkScrollableHeight() {
+    if (this._viewportHeight() > this.element.offsetTop) {
+      // load again
+      this._debounceScrolledToBottom();
+    }
+  },
+
+  _cancelTimers() {
+    run.cancel(this._debounceTimer);
+  },
+
+  /**
+   calculate the height of the viewport
+
+   @private
+   @method _viewportHeight
+   @return Integer
+   */
+  _viewportHeight() {
+    if (typeof FastBoot === 'undefined') {
+      let isScrollable = !!this.scrollable;
+      let viewportElem = isScrollable ? document.querySelector(this.scrollable) : window;
+      return isScrollable ? viewportElem.clientHeight : viewportElem.innerHeight;
+    }
+  }
 });
 
 export default InfinityLoaderComponent;
