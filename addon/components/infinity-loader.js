@@ -128,7 +128,11 @@ const InfinityLoaderComponent = Component.extend(InViewportMixin, {
       return false;
     }
 
-    if (get(this, 'loadPrevious')) {
+
+    const infinityModel = get(this, 'infinityModelContent')
+
+    if (get(this, 'loadPrevious') || infinityModel.get('_reverseStream')) {
+      console.log(infinityModel.get('_reverseStream'))
       return this._debounceScrolledToTop();
     }
     return this._debounceScrolledToBottom();
@@ -163,17 +167,20 @@ const InfinityLoaderComponent = Component.extend(InViewportMixin, {
      Without this debounce, all rows will be rendered causing immense performance problems
      */
     const infinityModelContent = get(this, 'infinityModelContent');
+    const isReverse = get(infinityModelContent, '_reverseStream');
 
     function loadPreviousPage() {
+      const amount = isReverse ? +1 : -1;
+
       if (typeof(get(this, 'infinityLoad')) === 'function') {
         // closure action
-        return get(this, 'infinityLoad')(infinityModelContent, -1);
+        return get(this, 'infinityLoad')(infinityModelContent, amount);
       } else {
-        get(this, 'infinity').infinityLoad(infinityModelContent, -1)
+        get(this, 'infinity').infinityLoad(infinityModelContent, amount);
       }
     }
 
-    if (get(infinityModelContent, 'firstPage') > 1 && get(infinityModelContent, 'currentPage') > 0) {
+    if (get(infinityModelContent, 'firstPage') > 1 && get(infinityModelContent, 'currentPage') > 0 || isReverse) {
       this._debounceTimer = run.debounce(this, loadPreviousPage, get(this, 'eventDebounce'));
     }
   },
@@ -193,18 +200,18 @@ const InfinityLoaderComponent = Component.extend(InViewportMixin, {
 
       infinityModelContent.then((content) => {
         if (typeof(get(this, 'infinityLoad')) === 'function') {
-        // closure action (if you need to perform some other logic)
-        return get(this, 'infinityLoad')(content);
-      } else {
-        // service action
-        get(this, 'infinity').infinityLoad(content, 1)
-          .then(() => {
-          if (get(content, '_canLoadMore')) {
-          this._checkScrollableHeight();
+          // closure action (if you need to perform some other logic)
+          return get(this, 'infinityLoad')(content);
+        } else {
+          // service action
+          get(this, 'infinity').infinityLoad(content, 1)
+            .then(() => {
+              if (get(content, '_canLoadMore')) {
+                this._checkScrollableHeight();
+              }
+            });
         }
       });
-      }
-    });
     }
     this._debounceTimer = run.debounce(this, loadMore, get(this, 'eventDebounce'));
   },

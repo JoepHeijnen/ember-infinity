@@ -36,29 +36,29 @@ let cacheInfinityCollection = (_cachedCollection, infinityModel, identifier, tim
 
 export default Service.extend({
   /**
-    Data fetching/caching service pull off of user's route
+   Data fetching/caching service pull off of user's route
 
-    @public
-    @property store
-    @type Ember.Service
-  */
+   @public
+   @property store
+   @type Ember.Service
+   */
   store: service(),
 
   /**
-    Internal reference to manage collection throughout lifecycle of service
+   Internal reference to manage collection throughout lifecycle of service
 
-    @public
-    @property infinityModels
-    @type Ember.Service
-  */
+   @public
+   @property infinityModels
+   @type Ember.Service
+   */
   infinityModels: null,
 
   /**
-    @private
-    @property _previousScrollHeight
-    @type Integer
-    @default 0
-  */
+   @private
+   @property _previousScrollHeight
+   @type Integer
+   @default 0
+   */
   _previousScrollHeight: 0,
 
   init() {
@@ -68,9 +68,9 @@ export default Service.extend({
   },
 
   /**
-    @method pushObjects
-    @param {EmberInfinity.InfinityModel} infinityModel
-    @param {Array} queryObject - list of Store models
+   @method pushObjects
+   @param {EmberInfinity.InfinityModel} infinityModel
+   @param {Array} queryObject - list of Store models
    */
   pushObjects(infinityModel, queryObject) {
     if (checkInstanceOf(infinityModel)) {
@@ -79,9 +79,9 @@ export default Service.extend({
   },
 
   /**
-    @method unshiftObjects
-    @param {EmberInfinity.InfinityModel} infinityModel
-    @param {Array} queryObject - list of Store models
+   @method unshiftObjects
+   @param {EmberInfinity.InfinityModel} infinityModel
+   @param {Array} queryObject - list of Store models
    */
   unshiftObjects(infinityModel, queryObject) {
     if (checkInstanceOf(infinityModel)) {
@@ -90,16 +90,16 @@ export default Service.extend({
   },
 
   /**
-    - Useful for updating the infinity model with a new array
-    - For example, you fetch a new array from your backend based on search criteria and need to swap out what currently
-    exists with what was returned from your query
-    - HOWEVER, note this method can be particularly dangerous, for example, when using to filter a list.  If you are not using queryParams or
-    some other sort of state that is passed to your model hook, when your component goes to fetch the next page of documents, it will not include
-    the filter param.  This will lead to a list that partly does not represent what the user filtered.
+   - Useful for updating the infinity model with a new array
+   - For example, you fetch a new array from your backend based on search criteria and need to swap out what currently
+   exists with what was returned from your query
+   - HOWEVER, note this method can be particularly dangerous, for example, when using to filter a list.  If you are not using queryParams or
+   some other sort of state that is passed to your model hook, when your component goes to fetch the next page of documents, it will not include
+   the filter param.  This will lead to a list that partly does not represent what the user filtered.
 
-    @method replace
-    @param {EmberInfinity.InfinityModel} infinityModel
-    @param newCollection - Ember Data (or similar store) response
+   @method replace
+   @param {EmberInfinity.InfinityModel} infinityModel
+   @param newCollection - Ember Data (or similar store) response
    */
   replace(infinityModel, newCollection) {
     if (checkInstanceOf(infinityModel)) {
@@ -110,10 +110,10 @@ export default Service.extend({
   },
 
   /**
-    Useful for clearing out the collection
+   Useful for clearing out the collection
 
-    @method flush
-    @param {EmberInfinity.InfinityModel} infinityModel
+   @method flush
+   @param {EmberInfinity.InfinityModel} infinityModel
    */
   flush(infinityModel) {
     if (checkInstanceOf(infinityModel)) {
@@ -124,13 +124,13 @@ export default Service.extend({
   },
 
   /**
-    Trigger a load of the next page of results while also checking if it can load more
-    Subsequent fetching.  Not used for initial request
+   Trigger a load of the next page of results while also checking if it can load more
+   Subsequent fetching.  Not used for initial request
 
-    @public
-    @method infinityLoad
-    @param {EmberInfinity.InfinityModel} infinityModel
-    @param {Integer} increment - to increase page by 1 or -1
+   @public
+   @method infinityLoad
+   @param {EmberInfinity.InfinityModel} infinityModel
+   @param {Integer} increment - to increase page by 1 or -1
    */
   infinityLoad(infinityModel, increment = 1) {
     if (!infinityModel) {
@@ -155,18 +155,18 @@ export default Service.extend({
   },
 
   /**
-    Use the model method in the place of `this.store.query('model')` to
-    initialize the Infinity Model for your route.
-    Main method used for initial load of infinity collection in route or top level component
+   Use the model method in the place of `this.store.query('model')` to
+   initialize the Infinity Model for your route.
+   Main method used for initial load of infinity collection in route or top level component
 
-    @method model
-    @param {String} modelName The name of the model.
-    @param {Object} options - optional - the perPage and startingPage to load from.
-    @param {Object} ExtendedInfinityModel - optional -
-      params on route to be looked up on every route request or
-      instance of InfinityModel
-    @return {Ember.RSVP.Promise}
-  */
+   @method model
+   @param {String} modelName The name of the model.
+   @param {Object} options - optional - the perPage and startingPage to load from.
+   @param {Object} ExtendedInfinityModel - optional -
+   params on route to be looked up on every route request or
+   instance of InfinityModel
+   @return {Ember.RSVP.Promise}
+   */
   model(modelName, options, ExtendedInfinityModel) {
     if (typeOf(ExtendedInfinityModel) === "class") {
       if (!(ExtendedInfinityModel.prototype instanceof InfinityModel)) {
@@ -274,14 +274,14 @@ export default Service.extend({
   },
 
   /**
-    load the next page from the adapter and update the model
-    set current height of elements.  If loadPrevious, we will use this value to scroll back down the page
+   load the next page from the adapter and update the model
+   set current height of elements.  If loadPrevious, we will use this value to scroll back down the page
 
-    @public
-    @method loadNextPage
-    @param {EmberInfinity.InfinityModel} infinityModel
-    @param {Integer} increment - to increase page by 1 or -1. Default to increase by one page
-    @return {Ember.RSVP.Promise} A Promise that resolves the model
+   @public
+   @method loadNextPage
+   @param {EmberInfinity.InfinityModel} infinityModel
+   @param {Integer} increment - to increase page by 1 or -1. Default to increase by one page
+   @return {Ember.RSVP.Promise} A Promise that resolves the model
    */
   loadNextPage(infinityModel, increment = 1) {
     set(infinityModel, '_loadingMore', true);
@@ -291,15 +291,24 @@ export default Service.extend({
       .then(newObjects => this._afterInfinityModel(newObjects, infinityModel))
       .then(newObjects => this._doUpdate(newObjects, infinityModel))
       .then(infinityModel => {
-        if (increment === 1) {
+
+        const updateViewport = () => {
+          let viewportElem = get(infinityModel, '_scrollable') ? document.querySelector(get(infinityModel, '_scrollable')) : document.documentElement;
+          scheduleOnce('afterRender', this, '_updateScrollTop', { infinityModel, viewportElem });
+        };
+
+        if(increment === 1 && get(infinityModel, '_reverseStream')) {
+          infinityModel.incrementProperty('currentPage');
+          updateViewport();
+
+        } else if (increment === 1) {
           // scroll down to load next page
           infinityModel.incrementProperty('currentPage');
         } else {
           if (typeof FastBoot === 'undefined') {
-            let viewportElem = get(infinityModel, '_scrollable') ? document.querySelector(get(infinityModel, '_scrollable')) : document.documentElement;
-            scheduleOnce('afterRender', this, '_updateScrollTop', { infinityModel, viewportElem });
             // scrolled up to load previous page
             infinityModel.decrementProperty('currentPage');
+            updateViewport();
           }
         }
         set(infinityModel, '_firstPageLoaded', true);
@@ -313,12 +322,12 @@ export default Service.extend({
   },
 
   /**
-    calculate the height of the scrollable viewport
+   calculate the height of the scrollable viewport
 
-    @private
-    @method _calculateHeight
-    @param {Object} infinityModel
-    @return Integer
+   @private
+   @method _calculateHeight
+   @param {Object} infinityModel
+   @return Integer
    */
   _calculateHeight(infinityModel) {
     if (typeof FastBoot === 'undefined') {
@@ -329,17 +338,17 @@ export default Service.extend({
   },
 
   /**
-    This method calculates the difference if loadPrevious=true
-    The browser by default will scroll to the top of the element list when the previous page
-    loads.  As a result, we need to scroll back down the page.
-    The math behind this is as follows:
-    (height after loading previous elems) - (old height)
-    So 150px - 100px === 150px
-    178px - 100px = 78px
-    120px - 10px = 110px
-    @private
-    @method _updateScrollTop
-    @return Integer
+   This method calculates the difference if loadPrevious=true
+   The browser by default will scroll to the top of the element list when the previous page
+   loads.  As a result, we need to scroll back down the page.
+   The math behind this is as follows:
+   (height after loading previous elems) - (old height)
+   So 150px - 100px === 150px
+   178px - 100px = 78px
+   120px - 10px = 110px
+   @private
+   @method _updateScrollTop
+   @return Integer
    */
   _updateScrollTop({ infinityModel, viewportElem }) {
     let scrollDiff = this._calculateHeight(infinityModel) - get(this, '_previousScrollHeight');
@@ -347,13 +356,13 @@ export default Service.extend({
   },
 
   /**
-    request the next page from the adapter
+   request the next page from the adapter
 
-    @private
-    @method _requestNextPage
-    @param {EmberInfinity.InfinityModel} infinityModel
-    @param {String} increment
-    @returns {Ember.RSVP.Promise} A Promise that resolves the next page of objects
+   @private
+   @method _requestNextPage
+   @param {EmberInfinity.InfinityModel} infinityModel
+   @param {String} increment
+   @returns {Ember.RSVP.Promise} A Promise that resolves the next page of objects
    */
   _requestNextPage(infinityModel, increment) {
     const modelName = get(infinityModel, '_infinityModelName');
@@ -363,14 +372,14 @@ export default Service.extend({
   },
 
   /**
-    set _totalPages && count param on infinityModel
-    Update the infinity model with new objects with either adding to end or start of Array of objects
+   set _totalPages && count param on infinityModel
+   Update the infinity model with new objects with either adding to end or start of Array of objects
 
-    @private
-    @method _doUpdate
-    @param {Ember.Enumerable} queryObject The new objects to add to the model
-    @param {EmberInfinity.InfinityModel} infinityModel
-    @return {Ember.Array} returns the new objects
+   @private
+   @method _doUpdate
+   @param {Ember.Enumerable} queryObject The new objects to add to the model
+   @param {EmberInfinity.InfinityModel} infinityModel
+   @return {Ember.Array} returns the new objects
    */
   _doUpdate(queryObject, infinityModel) {
     const totalPages = queryObject.get(get(infinityModel, 'totalPagesParam'));
@@ -380,8 +389,11 @@ export default Service.extend({
     set(infinityModel, 'meta', get(queryObject, 'meta'));
 
     let newObjects;
-    if (infinityModel.get('_increment') === 1) {
-       newObjects = infinityModel.pushObjects(queryObject.toArray());
+
+    if(infinityModel.get('_reverseStream')) {
+      newObjects = infinityModel.unshiftObjects(queryObject.toArray().reverseObjects());
+    } else if (infinityModel.get('_increment') === 1) {
+      newObjects = infinityModel.pushObjects(queryObject.toArray());
     } else {
       newObjects = infinityModel.unshiftObjects(queryObject.toArray());
     }
@@ -391,11 +403,11 @@ export default Service.extend({
   },
 
   /**
-    finish the loading cycle by notifying that infinity has been reached
+   finish the loading cycle by notifying that infinity has been reached
 
-    @private
-    @method _notifyInfinityModelLoaded
-    @param {EmberInfinity.InfinityModel} infinityModel
+   @private
+   @method _notifyInfinityModelLoaded
+   @param {EmberInfinity.InfinityModel} infinityModel
    */
   _notifyInfinityModelLoaded(infinityModel) {
     const totalPages = get(this, '_totalPages');
@@ -403,12 +415,12 @@ export default Service.extend({
   },
 
   /**
-    finish the loading cycle by notifying that infinity has been updated
+   finish the loading cycle by notifying that infinity has been updated
 
-    @private
-    @method _notifyInfinityModelUpdated
-    @param {Array} queryObject
-    @param {EmberInfinity.InfinityModel} infinityModel
+   @private
+   @method _notifyInfinityModelUpdated
+   @param {Array} queryObject
+   @param {EmberInfinity.InfinityModel} infinityModel
    */
   _notifyInfinityModelUpdated(queryObject, infinityModel) {
     const totalPages = get(this, '_totalPages');
@@ -417,10 +429,10 @@ export default Service.extend({
   },
 
   /**
-    hook to modify results from response
+   hook to modify results from response
 
-    @private
-    @method _afterInfinityModel
+   @private
+   @method _afterInfinityModel
    */
   _afterInfinityModel(newObjects, infinityModel) {
     let result = infinityModel.afterInfinityModel(newObjects, infinityModel);
@@ -431,12 +443,12 @@ export default Service.extend({
   },
 
   /**
-    If pass in custom store, ensure passed string
-    Ensure query method exists, otherwise pass method (that returns a promise) in as storeFindMethod in options
+   If pass in custom store, ensure passed string
+   Ensure query method exists, otherwise pass method (that returns a promise) in as storeFindMethod in options
 
-    @method _ensureCustomStoreCompatibility
-    @param {Option} options
-  */
+   @method _ensureCustomStoreCompatibility
+   @param {Option} options
+   */
   _ensureCustomStoreCompatibility(options, store, storeFindMethod) {
     if (!store[storeFindMethod]) {
       throw new EmberError('Ember Infinity: Custom data store must specify query method');
@@ -444,12 +456,12 @@ export default Service.extend({
   },
 
   /**
-    Determine if Ember data is valid
-    Ensure _store is set on route with a query method
-    Ensure model passed to infinity model
+   Determine if Ember data is valid
+   Ensure _store is set on route with a query method
+   Ensure model passed to infinity model
 
-    @method _ensureCompatibility
-  */
+   @method _ensureCompatibility
+   */
   _ensureCompatibility(store, storeFindMethod) {
     if (isEmpty(store) || isEmpty(store[storeFindMethod])){
       throw new EmberError('Ember Infinity: Store is not available to infinity.model');
