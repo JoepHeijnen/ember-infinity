@@ -131,8 +131,7 @@ const InfinityLoaderComponent = Component.extend(InViewportMixin, {
 
     const infinityModel = get(this, 'infinityModelContent')
 
-    if (get(this, 'loadPrevious') || infinityModel.get('_reverseStream')) {
-      console.log(infinityModel.get('_reverseStream'))
+    if (get(this, 'loadPrevious') || infinityModel && get(infinityModel, '_reverseStream')) {
       return this._debounceScrolledToTop();
     }
     return this._debounceScrolledToBottom();
