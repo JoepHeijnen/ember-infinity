@@ -66,6 +66,9 @@ module('Acceptance: Infinity Route - infinity routes', function(hooks) {
 
     shouldBeItemsOnTheList(assert, 50);
     infinityShouldBeReached(assert);
+
+    const global = this.owner.lookup('service:global');
+    assert.equal(global.isUpdated, true);
   });
 
   test('it should start loading more items before the scroll is on the very bottom ' +
@@ -132,6 +135,34 @@ module('Acceptance: Infinity Route - infinity routes', function(hooks) {
     });
   });
 
+  module('Acceptance: Infinity Route - extended infinity model', function(/*hooks*/) {
+    test('it should load all pages after scrolling', async function(assert) {
+      this.server.createList('post', 15);
+      await visit('/extended');
+
+      shouldBeItemsOnTheList(assert, 6);
+      assert.equal(currentURL(), '/extended');
+
+      await triggerEvent('ul', 'scroll');
+      document.querySelector('.infinity-loader').scrollIntoView(false);
+
+      await waitUntil(() => {
+        return postList().querySelectorAll('li').length === 12;
+      });
+
+      shouldBeItemsOnTheList(assert, 12);
+
+      await triggerEvent('ul', 'scroll');
+      document.querySelector('.infinity-loader').scrollIntoView(false);
+
+      await waitUntil(() => {
+        return postList().querySelectorAll('li').length === 15;
+      });
+
+      shouldBeItemsOnTheList(assert, 15);
+    });
+  });
+
   module('Acceptance: Infinity Route - nested with closure actions', function(/*hooks*/) {
     test('load more with closure actions works', async function(assert) {
       this.server.createList('post', 50);
@@ -139,7 +170,7 @@ module('Acceptance: Infinity Route - infinity routes', function(hooks) {
 
       assert.equal(find('ul').querySelectorAll('li').length, 25, `${25} items should be in the list`);
       assert.equal(find('.infinity-loader').classList.contains('reached-infinity'), false, 'Infinity should not yet have been reached');
-      assert.equal(find('.list-items').querySelector('span').textContent, 'Loading Infinite Model...');
+      assert.equal(find('.list-items').querySelector('span').textContent, 'Loading Infinity Model...');
       let { top } = document.querySelector('.list-items').getBoundingClientRect()
       scrollTo(top - 100);
 
