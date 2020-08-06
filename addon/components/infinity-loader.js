@@ -1,17 +1,16 @@
-import InViewportMixin from 'ember-in-viewport';
 import { run } from '@ember/runloop';
 import { get, set, computed, defineProperty } from '@ember/object';
 import Component from '@ember/component';
 import { inject as service } from '@ember/service';
-import { resolve } from 'rsvp';
+import layout from '../templates/components/infinity-loader';
 
-const InfinityLoaderComponent = Component.extend(InViewportMixin, {
+const InfinityLoaderComponent = Component.extend({
+  layout,
+
   infinity: service(),
+  inViewport: service(),
 
-  classNames: ['infinity-loader'],
-  classNameBindings: ['isDoneLoading:reached-infinity', 'viewportEntered:in-viewport'],
-  attributeBindings: ['data-test-infinity-loader'],
-  'data-test-infinity-loader': true,
+  tagName: '',
 
   /**
    * @public
@@ -77,28 +76,22 @@ const InfinityLoaderComponent = Component.extend(InViewportMixin, {
    */
   isVisible: true,
 
+  loaderClassNames: computed('classNames', function() {
+    return 'infinity-loader '.concat(this.classNames).trim();
+  }),
+
   init() {
     this._super(...arguments);
 
-    let scrollableArea = get(this, 'scrollable');
-    this.setProperties({
-      viewportSpy: true,
-      viewportTolerance: {
-        top: 0,
-        right: 0,
-        bottom: get(this, 'triggerOffset'),
-        left: 0
-      },
-      scrollableArea
-    });
-  },
-
-  willInsertElement() {
     defineProperty(this, 'infinityModelContent', computed('infinityModel', function() {
-      return resolve(get(this, 'infinityModel'));
+      return Promise.resolve(this.infinityModel);
     }));
 
     this.addObserver('infinityModel', this, this._initialInfinityModelSetup);
+    this._initialInfinityModelSetup();
+
+    this.addObserver('hideOnInfinity', this, this._loadStatusDidChange);
+    this.addObserver('reachedInfinity', this, this._loadStatusDidChange);
   },
 
   /**
@@ -106,28 +99,47 @@ const InfinityLoaderComponent = Component.extend(InViewportMixin, {
    *
    * @method didInsertElement
    */
-  didInsertElement() {
-    this._super(...arguments);
+  didInsertLoader(element, [instance]) {
+    /**
+     * @public
+     * @property loadingText
+     */
+    set(instance, 'loadingText', instance.loadingText || 'Loading Infinity Model...');
+    /**
+     * @public
+     * @property loadedText
+     */
+    set(instance, 'loadedText', instance.loadedText || 'Infinity Model Entirely Loaded.');
 
-    this._loadStatusDidChange();
+    instance.elem = element;
 
-    this._initialInfinityModelSetup();
+    let options = {
+      viewportSpy: true,
+      viewportTolerance: {
+        top: 0,
+        right: 0,
+        bottom: instance.triggerOffset,
+        left: 0
+      },
+      scrollableArea: instance.scrollable
+    };
+    const { onEnter, onExit } = instance.inViewport.watchElement(element, options);
 
-    this.addObserver('hideOnInfinity', this, this._loadStatusDidChange);
+    onEnter(instance.didEnterViewport.bind(instance));
+    onExit(instance.didExitViewport.bind(instance));
   },
 
-  willDestroyElement() {
-    this._super(...arguments);
-
+  willDestroy() {
     this._cancelTimers();
 
     get(this, 'infinityModelContent')
       .then((infinityModel) => {
-        infinityModel.off('infinityModelLoaded', this, this._loadStatusDidChange);
+        infinityModel.off('infinityModelLoaded', this, this._loadStatusDidChange.bind(this));
       });
 
     this.removeObserver('infinityModel', this, this._initialInfinityModelSetup);
     this.removeObserver('hideOnInfinity', this, this._loadStatusDidChange);
+    this.removeObserver('reachedInfinity', this, this._loadStatusDidChange);
   },
 
   /**
@@ -137,7 +149,7 @@ const InfinityLoaderComponent = Component.extend(InViewportMixin, {
    */
   didEnterViewport() {
     if (
-      get(this, 'developmentMode') ||
+      this.developmentMode ||
       typeof FastBoot !== 'undefined' ||
       this.isDestroying ||
       this.isDestroyed
@@ -169,9 +181,17 @@ const InfinityLoaderComponent = Component.extend(InViewportMixin, {
   _initialInfinityModelSetup() {
     get(this, 'infinityModelContent')
       .then((infinityModel) => {
-        infinityModel.on('infinityModelLoaded', this, this._loadStatusDidChange);
+        if (this.isDestroyed || this.isDestroying) {
+          return;
+        }
+
+        infinityModel.on('infinityModelLoaded', this._loadStatusDidChange.bind(this));
         set(infinityModel, '_scrollable', get(this, 'scrollable'));
         set(this, 'isDoneLoading', false);
+        if (!get(this, 'hideOnInfinity')) {
+          set(this, 'isVisible', true);
+        }
+        this._loadStatusDidChange();
       });
   },
 
@@ -181,12 +201,18 @@ const InfinityLoaderComponent = Component.extend(InViewportMixin, {
   _loadStatusDidChange() {
     get(this, 'infinityModelContent')
       .then((infinityModel) => {
+        if (this.isDestroyed || this.isDestroying) {
+          return;
+        }
+
         if (get(infinityModel, 'reachedInfinity')) {
           set(this, 'isDoneLoading', true);
 
           if (get(this, 'hideOnInfinity')) {
             set(this, 'isVisible', false);
           }
+        } else {
+          set(this, 'isVisible', true);
         }
       });
   },
@@ -238,7 +264,7 @@ const InfinityLoaderComponent = Component.extend(InViewportMixin, {
           // service action
           get(this, 'infinity').infinityLoad(content, 1)
             .then(() => {
-              if (get(content, '_canLoadMore')) {
+              if (get(content, 'canLoadMore')) {
                 this._checkScrollableHeight();
               }
             });
@@ -257,7 +283,7 @@ const InfinityLoaderComponent = Component.extend(InViewportMixin, {
     if (this.isDestroying || this.isDestroyed) {
       return false;
     }
-    if (this._viewportHeight() > this.element.offsetTop) {
+    if (this._viewportHeight() > this.elem.offsetTop) {
       // load again
       this._debounceScrolledToBottom();
     }

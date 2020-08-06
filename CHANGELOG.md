@@ -1,6 +1,52 @@
-# Change Log
+# Changelog
 
-## [1.1.3](https://github.com/ember-infinity/ember-infinity/tree/v1.0.0) (2018-08-20)
+## [2.1.0](https://github.com/ember-infinity/ember-infinity/tree/v2.1.0) (2020-01-24)
+[Full Changelog](https://github.com/hhff/ember-infinity/compare/v2.0.3...v2.1.0)
+
+- Remove tagName from loader component to remove isVisible (https://github.com/ember-infinity/ember-infinity/pull/416)
+- Replace Mixin with inViewport service (https://github.com/ember-infinity/ember-infinity/pull/410)
+
+## [2.0.3](https://github.com/ember-infinity/ember-infinity/tree/v2.0.3) (2020-01-18)
+[Full Changelog](https://github.com/hhff/ember-infinity/compare/v2.0.1...v2.0.3)
+
+- Show loader when reachedInfinity changes (https://github.com/ember-infinity/ember-infinity/pull/413)
+- Bump node in pkg.json (https://github.com/ember-infinity/ember-infinity/pull/408)
+
+## [2.0.1](https://github.com/ember-infinity/ember-infinity/tree/v2.0.1) (2019-12-31)
+[Full Changelog](https://github.com/hhff/ember-infinity/compare/v2.0.0...v2.0.1)
+
+- In Viewport bump (https://github.com/ember-infinity/ember-infinity/pull/407)
+
+## [2.0.0](https://github.com/ember-infinity/ember-infinity/tree/v2.0.0) (2019-12-31)
+[Full Changelog](https://github.com/hhff/ember-infinity/compare/v1.4.9...v2.0.0)
+
+- [MAJOR]: Node 10 bump (https://github.com/ember-infinity/ember-infinity/pull/401)
+
+## [1.4.9](https://github.com/ember-infinity/ember-infinity/tree/v1.4.9) (2019-09-20)
+[Full Changelog](https://github.com/hhff/ember-infinity/compare/v1.1.3...v1.4.2)
+
+- Replace Ember.Evented for own implementation (https://github.com/ember-infinity/ember-infinity/pull/390)
+
+## [1.4.8](https://github.com/ember-infinity/ember-infinity/tree/v1.4.8) (2019-09-09)
+[Full Changelog](https://github.com/hhff/ember-infinity/compare/v1.4.7...v1.4.8)
+
+- Optional store injection (https://github.com/ember-infinity/ember-infinity/pull/388)
+
+## [1.4.7](https://github.com/ember-infinity/ember-infinity/tree/v1.4.7) (2019-05-24)
+[Full Changelog](https://github.com/hhff/ember-infinity/compare/v1.4.2...v1.4.7)
+
+## [1.4.2](https://github.com/ember-infinity/ember-infinity/tree/v1.4.2) (2019-04-15)
+[Full Changelog](https://github.com/hhff/ember-infinity/compare/v1.1.3...v1.4.2)
+
+- General minor updates (https://github.com/ember-infinity/ember-infinity/pull/330)
+- Use scollingElement for cross browser support for scrolling area (https://github.com/ember-infinity/ember-infinity/pull/334)
+- Use intersection-observer-admin for managing Intersection Observers (https://github.com/ember-infinity/ember-infinity/pull/341)
+- Fix infinity model container so services can be injected on it (https://github.com/ember-infinity/ember-infinity/pull/338)
+- Allow nested object to cache (https://github.com/ember-infinity/ember-infinity/pull/356)
+- Minor improvements to docs and make `isLoaded` && `isError` public (https://github.com/ember-infinity/ember-infinity/pull/364)
+- loadingMore public (https://github.com/ember-infinity/ember-infinity/pull/372)
+
+## [1.1.3](https://github.com/ember-infinity/ember-infinity/tree/v1.1.3) (2018-08-20)
 [Full Changelog](https://github.com/hhff/ember-infinity/compare/v1.0.0...v1.1.3)
 
 **Important Merged pull requests:**
